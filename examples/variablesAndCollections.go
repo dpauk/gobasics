@@ -1,13 +1,21 @@
-package main
+package examples
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
-func main() {
+func VariablesAndCollections() {
+	fmt.Println("---- Variables and collections ----")
 	variablesExample()
 	arrayExampleResult := arrayExample()
 	slicesExample(arrayExampleResult)
 	mapsExample()
 	structsExample()
+	err := returningErrorsExample()
+	fmt.Println(err)
+	// The _ allows to to take a result you don't use
+	_, err = returningMultipleValues()
 }
 
 func variablesExample() {
@@ -121,4 +129,14 @@ func structsExample() {
 	}
 	fmt.Printf("A struct with data added implictly with nice formatting is %v (type %T)\n", u3, u3)
 	// Output: A struct with data added implictly with nice formatting is {3 Percy Pea} (type main.user)
+}
+
+func returningErrorsExample() error {
+	fmt.Println("returningErrorsExample()")
+	return errors.New("Something went wrong.")
+}
+
+func returningMultipleValues() (int, error) {
+	value := 1
+	return value, nil
 }
